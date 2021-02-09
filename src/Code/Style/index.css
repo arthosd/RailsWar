@@ -1,0 +1,15 @@
+/*
+    Contiendra le style de la page d'acceuil
+*/
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('./../../../Assets/jaune.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1{
+    font-size: 1em;
+    text-c
+}
