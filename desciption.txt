@@ -1,0 +1,49 @@
+Structure du projet :
+-------------------
+
+Roots
+    |
+    |
+    ---- Assets
+    |        |
+    |        |
+    |        --- Github (images pour mettre dans le readme.md)
+    |        |
+    |        |
+    |        --- Rails (image apparaissant dans le squelette du site)
+    |
+    |
+    |
+    |
+    | ---- node_modules (Contient les modules node) ! NE PAS TOUCHER OU VERSIONNER
+    |
+    |
+    |
+    |
+    | ---- Public (Fihciers html, js et css)
+    |        |
+    |        |
+    |        ---- Templates (Contient les templates à renvoyer en fonction de l'appel node)
+    |         |           |
+    |         |           |
+    |         |           | ---- Html (Code Twig )
+    |         |           |
+    |         |           |
+    |         |           | --- Css (Css si besoin)
+    |         |
+    |         |
+    |         |
+    |         ---- Js (Contient les fichiers JS)
+    |   
+    |
+    |
+    | ---- src (Fichier source pour Backend)
+    |       |
+    |       |
+    |       ---- Api (Dossier contenant les fonctions d'appel aux API)
+    |       |
+    |       |
+    |       ---- Config (Dossier contenant les fichiers de configuration)
+    |       |
+    |       |
+    |       ---- Database (Si besoin, SQL Middleware en node)
