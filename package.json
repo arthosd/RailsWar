@@ -1,0 +1,26 @@
+{
+  "name": "railswar",
+  "version": "0.0.1",
+  "description": "University Project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arthosd/RailsWar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arthosd/RailsWar/issues"
+  },
+  "homepage": "https://github.com/arthosd/RailsWar#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
