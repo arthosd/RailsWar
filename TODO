@@ -1,11 +1,14 @@
 **Semaine  9 -> 13 Février : 
 
-    **-Définir Backend (besoin ou pas d'un backend)
-    **-Choisir technologies : (FE : Bootstrap, Angular ou React ; BE : Java, Python (flask), php , Node.js)
-    **-Choisir API (https://www.digital.sncf.com/startup/api/token-developpeur (SNCF Open Data))
-        **+Demander la clé d'accès pour l'API
-        **+La mettre dans un fichier de config qui doit être dans le .gitignore
-    **-Distibuer les points suivant à toutes l'équipe
+    -Définir Backend (besoin ou pas d'un backend) = Node.js (ou php s'il autorise)
+    
+    -Choisir technologies : (front = Vanilla Html using Boostrap , Back = either Node.js or php depending on what he'll authorize)
+    
+    -API : 1- SNCF API (https://ressources.data.sncf.com/api/v1/console/datasets/1.0/search/)  
+                Demander la clée : (https://www.digital.sncf.com/startup/api/token-developpeur (SNCF Open Data))
+           2- RATP API (https://dataratp2.opendatasoft.com/api/v1/console/datasets/1.0/search/)
+
+    -Distibuer les points suivant à toutes l'équipe
     
 ** Semaine 15 -> 19 Février :
     **-Définir structure site (src > code > Html / Js / Style ; ./Assets)
