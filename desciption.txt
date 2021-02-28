@@ -19,14 +19,13 @@ Roots
     |
     |
     |
-    |
-    | ---- views (Fihciers html, js et css)
+    | ---- views (Fichiers html, js et css)
     |        |
     |        |
     |        ---- Templates (Contient les templates à renvoyer en fonction de l'appel node)
     |         |           |
     |         |           |
-    |         |           | ---- Html (Code Twig )
+    |         |           | ---- Html (Code EJS )
     |         |           |
     |         |           |
     |         |           | --- Css (Css si besoin)

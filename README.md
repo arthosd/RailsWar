@@ -27,7 +27,7 @@ Go to the project's root and run the following command to install node modules.
   npm run start
   ```
  
- Nodemon should launch automatically. You can now type http://localhost:8080/ in your web browser url bar. If "Hello World" appears on your screen, you're good to go.
+ Nodemon should launch automatically. You can now type http://localhost:8080/ in your web browser url bar. If "J'aime les pattes au pesto" appears on your screen, you're good to go.
  
  ## Dependencies Used
  

@@ -1,10 +1,11 @@
-var express = require('express');
+import express from 'express';
+
 var app = express();
 
-app.set('view engine', 'ejs');
+app.set("view engine", 'ejs');
 
 app.get('/', function(req, res) {
-    res.render('Templates/index');
+    res.render('Templates/index')
   });
 
 app.listen(8080)
