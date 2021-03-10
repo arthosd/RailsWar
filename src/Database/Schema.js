@@ -4,10 +4,6 @@
 
 import mongoose from 'mongoose'
 
-export const ratp_schema = {
-
-};
-
 export const sncf_schema = {
     
 };
