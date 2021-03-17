@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import create_model,{ user_schema } from './Schema';
+import create_model,{ user_schema } from './Schema.js';
 
 export default class Database {
 
