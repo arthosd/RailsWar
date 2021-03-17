@@ -4,8 +4,9 @@
  */
 
 export const api = {
-    sncf : {
-        key : '7fd24194-80dd-4b90-ac91-5a3115b09300'
+    SNCF_CONFIG : {
+        username :"20207a24-a66a-4324-8cdb-a9983d61bf65",
+        password : ''
     },
     navitia : {
         key : '20207a24-a66a-4324-8cdb-a9983d61bf65'
