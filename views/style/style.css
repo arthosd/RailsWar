@@ -1,0 +1,14 @@
+
+#map {
+  /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
+}
+.container{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
