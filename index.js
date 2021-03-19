@@ -6,14 +6,16 @@ app.set("view engine", 'ejs')
 
 app.use(express.static("Assets"));
 
-app.use(express.static('/views'));
+app.use('/views', express.static("views"));
 
 app.get('/', function (req, res) {
-  res.render('Templates/accueil')
+  res.locals.title = "Home"; 
+  res.render('Templates/accueil');
 });
 
 app.get('/sign', function (req, res) {
-  res.render('Templates/sign')
+  res.locals.title = "Sign In"; 
+  res.render('Templates/sign');
 });
 
 app.listen(9080)
