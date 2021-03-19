@@ -1,5 +1,7 @@
 # Untracking node_modules
 /node_modules
 
+# Untracking http request file
 request.rest
-Test
+
+/Test

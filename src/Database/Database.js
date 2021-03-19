@@ -1,13 +1,15 @@
 import mongoose from 'mongoose';
-import create_model from './Schema';
+import create_model,{ user_schema } from './Schema.js';
 
 export default class Database {
 
-    constructor(collection_name) {
+    constructor(database_name) {
 
         this.db = undefined;
-        this.database_url = 'mongodb://localhost/'+collection_name;
-        this.models = new Map();
+        this.database_url = 'mongodb://localhost/'+database_name;
+        this.models = {
+            "user" : create_model("user", user_schema)
+        };
     }
     
     /**
@@ -45,4 +47,54 @@ export default class Database {
      * @param { Le nom du schéma } name_schema 
      */
     get_model (name_schema) { return this.models.get(name_schema); }
+    /**
+     * Enregistre les données utilisateurs dans la base de données
+     * 
+     * @param { L'email de l'utilisateur } email 
+     * @param { Le password de l'utilisateur } password 
+     * @param { Le nom + prénom de l'utilisateur } name 
+     */
+    register_user (email, password, name) {
+
+        const User_model = this.models["user"];
+        const user_config = {
+            name : name,
+            mail_adress : email,
+            password : password
+        };
+
+        const user = new User_model(user_config);
+        user.save((err, item) => {
+            if (err) return console.log(err)
+            console.log("item saved");
+        });
+    }
+    
+    /**
+     * 
+     * Va récupérer l'utilisateur dans la base de données
+     * en fonction du filtre donné en argument 
+     * 
+     * @param {*} email De l'utilisateur
+     * @param {*} pwd de l'utilisateur
+     * @param {*} user_in_callback  fonction à déclencher si mle 
+     * @param {*} user_out_callback 
+     */
+    verify_user (email,pwd, user_in_callback, user_out_callback) {
+        
+        const User_model = this.models["user"];
+        User_model.find({"mail_adress" : email, "password":pwd },(err, data) => {
+
+            if (err) {
+                console.log(err);
+                return undefined;
+            }
+
+            if (data.length === 0)
+                user_out_callback()// On appelle la fonction de "rejet"
+            else 
+                user_in_callback()// ON appelle la fonction de "ok"
+
+        })
+    }
 }
