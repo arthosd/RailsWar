@@ -28,7 +28,4 @@ export const sncf_schema = {
  * @param { Le nom du schéma } name_schema 
  * @param { Le schéma lui même } schema 
  */
-export default function create_model (name_schema, schema) {
-
-    return mongoose.model(name_schema, schema);
-}
+export default function create_model (name_schema, schema) { return mongoose.model(name_schema, schema); }

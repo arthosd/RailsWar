@@ -70,21 +70,31 @@ export default class Database {
         });
     }
     
-    find_all_user () {
+    /**
+     * 
+     * Va récupérer l'utilisateur dans la base de données
+     * en fonction du filtre donné en argument 
+     * 
+     * @param {*} email De l'utilisateur
+     * @param {*} pwd de l'utilisateur
+     * @param {*} user_in_callback  fonction à déclencher si mle 
+     * @param {*} user_out_callback 
+     */
+    verify_user (email,pwd, user_in_callback, user_out_callback) {
         
         const User_model = this.models["user"];
-        User_model.find({},(err, data) => {
+        User_model.find({"mail_adress" : email, "password":pwd },(err, data) => {
 
             if (err) {
                 console.log(err);
                 return undefined;
             }
 
-            data.map((item) => {
-                console.log(item);
-            })
+            if (data.length === 0)
+                user_out_callback()// On appelle la fonction de "rejet"
+            else 
+                user_in_callback()// ON appelle la fonction de "ok"
 
-            return data;
         })
     }
 }
