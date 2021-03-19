@@ -1,7 +1,7 @@
 #map {
   /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
   height: 100%;
-  width: 100%;
+  width: 98%;
   position: absolute;
   margin: 0;
   padding: 0;
@@ -13,10 +13,7 @@
 html, body {
   height: 100%;
 }
-body {
-  display: flex;
-  flex-direction: column;
-}
+
 .content {
   flex: 1 0 auto;
 }
