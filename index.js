@@ -13,6 +13,11 @@ app.get('/', function (req, res) {
   res.render('Templates/accueil');
 });
 
+app.get('/search', function (req, res) {
+  res.locals.title = "Search"; 
+  res.render('Templates/search');
+});
+
 app.get('/sign', function (req, res) {
   res.locals.title = "Sign In"; 
   res.render('Templates/sign');

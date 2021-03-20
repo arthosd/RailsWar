@@ -1,7 +1,7 @@
 <%- include ("header") %>
 
     <body>
-        <div id="map">
+        <div id="map_accueil">
             <!-- Ici s'affichera la carte -->
         </div>
         <div class="container" id="search">
@@ -14,7 +14,7 @@
                                 <h3 class="card-header">Où allez-vous ?</h3>
                             </div>
                             <div class="card-block">
-                                <form role="form">
+                                <form role="form" action="/search">
                                     <div class="form-group">
                                         <input type="lieu_depart" name="lieu_depart" id="lieu_depart"
                                             class="form-control form-control-sm" placeholder="Départ...">
@@ -23,9 +23,7 @@
                                         <input type="lieu_arrivee" name="lieu_arrivee" id="lieu_arrivee"
                                             class="form-control form-control-sm" placeholder="Arrivée...">
                                     </div>
-
-                                    <input class="btn btn-secondary btn-lg btn-block" type="submit" value="Search">
-
+                                    <input class="btn btn-secondary btn-lg btn-block" type="submit" value="Search"/>
                                 </form>
                             </div>
                         </div>
@@ -46,7 +44,7 @@
             // Fonction d'initialisation de la carte
             function initMap() {
                 // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
-                macarte = L.map('map').setView([lat, lon], 11);
+                macarte = L.map('map_accueil').setView([lat, lon], 11);
                 // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
                 L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
                     // Il est toujours bien de laisser le lien vers la source des données
