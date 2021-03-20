@@ -1,14 +1,19 @@
 <%- include ("header") %>
 
     <body>
-        <div class="container-fluid h-100">
-            <div class="row h-100">
-                <aside class="col-12 col-md-2 p-0 bg-dark">
-                    <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start">
-                        <div class="collapse navbar-collapse">
-                            <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
-                                <!-- Insérez ici le reste de votre menu -->
-
+        <div id="map">
+            <!-- Ici s'affichera la carte -->
+        </div>
+        <div class="container" id="search">
+            <div class="row centered-form">
+                <div
+                    class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 offset-sm-1 offset-md-2 offset-lg-3 offset-xl-4">
+                    <div class="shadow p-3 mb-5 bg-white">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h3 class="card-header">Où allez-vous ?</h3>
+                            </div>
+                            <div class="card-block">
                                 <form role="form">
                                     <div class="form-group">
                                         <input type="lieu_depart" name="lieu_depart" id="lieu_depart"
@@ -22,18 +27,10 @@
                                     <input class="btn btn-secondary btn-lg btn-block" type="submit" value="Search">
 
                                 </form>
-
-                            </ul>
+                            </div>
                         </div>
-                    </nav>
-                </aside>
-                
-                <main class="col">
-                    <div id="map">
-                        <!-- Ici s'affichera la carte -->
                     </div>
-
-                </main>
+                </div>
             </div>
         </div>
 

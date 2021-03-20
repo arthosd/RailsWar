@@ -1,22 +1,28 @@
 #map {
   /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
   height: 100%;
-  width: 98%;
+  width: 100%;
   position: absolute;
+  z-index: -1;
   margin: 0;
   padding: 0;
+}
+#search{
+  padding-top: 175px;
+  padding-bottom: 175px;
 }
 .container{
   padding-top: 50px;
   padding-bottom: 50px;
+  /*margin-bottom: 255px;*/
 }
 html, body {
   height: 100%;
 }
-
 .content {
   flex: 1 0 auto;
 }
 .footer {
   flex-shrink: 0;
+  margin-top: 255px;
 }
