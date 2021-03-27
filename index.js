@@ -30,4 +30,9 @@ app.get('/profil', function (req, res) {
   res.render('Templates/profil');
 });
 
+app.get('/history', function (req, res) {
+  res.locals.title = "History";
+  res.render('Templates/history');
+});
+
 app.listen(9080)

@@ -6,14 +6,14 @@
 
         <!-- Pushable content along with off-canvas opener. -->
         <div class="bs-offset-main bs-canvas-anim bg-secondary">
-            <button class="btn btn-primary" type="button" data-toggle="canvas" data-target="#bs-canvas-left"
+            <button class="btn btn-info" type="button" data-toggle="canvas" data-target="#bs-canvas-left"
                 aria-expanded="false" aria-controls="bs-canvas-left">&#9776;</button>
             Display search tab
         </div>
 
         <!-- Off-canvas sidebar markup, left -->
         <div id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-secondary h-100">
-            <header class="bs-canvas-header p-3 bg-primary">
+            <header class="bs-canvas-header p-3 bg-info">
                 <h4 class="d-inline-block text-light mb-0">Search tab</h4>
                 <button type="button" class="bs-canvas-close close" aria-label="Close"><span aria-hidden="true"
                         class="text-light">&times;</span></button>
@@ -28,10 +28,108 @@
                         <input type="lieu_arrivee" name="lieu_arrivee" id="lieu_arrivee"
                             class="form-control form-control-sm" placeholder="Arrivée...">
                     </div>
-                    <div class="shadow p-2 mb-2 bg-primary">
+                    <div class="shadow p-2 mb-2 bg-info">
                     <input class="btn btn-secondary btn-lg btn-block" type="submit" value="Search">
                     </div>
                 </form>
+                <div>
+                    <hr style="height:1px;border:none;color:#333;background-color:#333;"/>
+                </div>
+                <div class="shadow p-3 mb-5 bg-white">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    Départ : Paris
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    Destination : Marseille
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-8 col-md-8">
+                                <div class="form-group">
+                                    Date : 01/04/2021
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group centered">
+                                    Heure de départ : 12h30
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    Heure d'arrivée : 16h00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group centered">
+                                    Distance : 660 km
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    Prix : 120.35 euros
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shadow p-3 mb-5 bg-white">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    Départ : Paris
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    Destination : Marseille
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-8 col-md-8">
+                                <div class="form-group">
+                                    Date : 01/04/2021
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group centered">
+                                    Heure de départ : 14h30
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    Heure d'arrivée : 18h00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group centered">
+                                    Distance : 660 km
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    Prix : 103.95 euros
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -72,7 +170,7 @@
                 var bsDefaults = {
                     offset: false,
                     overlay: true,
-                    width: '330px'
+                    width: '430px'
                 },
                     bsMain = $('.bs-offset-main'),
                     bsOverlay = $('.bs-canvas-overlay');
