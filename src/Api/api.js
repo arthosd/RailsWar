@@ -25,3 +25,19 @@ export function get_price(callback,origin, destination) {
         console.log(err);
     })
 }
+
+/**
+ * Will get all stations
+ * 
+ * @param { Callback function that is triggered when reponse is done} callback 
+ */
+export function get_all_station (callback) {
+
+    var url = "https://ressources.data.sncf.com/api/records/1.0/search/?dataset=referentiel-gares-voyageurs&q=&sort=gare_alias_libelle_noncontraint&facet=departement_libellemin&facet=segmentdrg_libelle&facet=gare_agencegc_libelle&facet=gare_regionsncf_libelle&facet=gare_ug_libelle";
+
+    axios.get(url).then((response) => {
+        callback (response);
+    }).catch((err) => {
+        console.log(err);
+    })
+}
