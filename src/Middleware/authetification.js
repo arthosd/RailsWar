@@ -55,7 +55,29 @@ export function inscription(req, res, next) {
  */
 export function connexion (req, res, next) {
 
+    const database = new Database("railswars");             // On ouvre la bdd
 
+    database.connect(() => {
 
-    next();
+        database.verify_user(req.params.email, req.params.pwd, () => {
+            // Si c'est bon
+            console.log("C'est bon");
+            res.send(200);
+            return;
+
+        } , () => {
+            // Si c'est pas bon
+            console.log("C'est pas bon");
+            res.send(400);
+            return;
+        })
+
+    } , () => {
+        res.send(500);
+        return;
+    })
+    
+    if (next != undefined) {
+        next();
+    }
 }
