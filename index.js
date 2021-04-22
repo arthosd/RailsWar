@@ -1,4 +1,5 @@
 import Database from './src/Database/Database.js';
+import { inscription } from './src/Middleware/authetification.js';
 import express from 'express';
 
 const app = express();
@@ -9,15 +10,7 @@ app.get('/', function(req, res) {
     res.render('Templates/index')
   });
 
-app.post('/user',(req,res)=>{
-
-  const database= new Database("railswars");
-
-  database.connect( () => {},() => {} );
-  database.register_user(req.body.mail,req.body.password,req.body.name);
-
-  res.send(200);
-});
+app.post('/user',(req, res) =>  { inscription(req, res, undefined); });
 
 app.get('/user/:email&:pwd' , (req, res) => {
     const db = new Database("railswars");
@@ -35,4 +28,4 @@ app.get('/user/:email&:pwd' , (req, res) => {
     });
 })
 
-app.listen(8080)
+app.listen(9080)

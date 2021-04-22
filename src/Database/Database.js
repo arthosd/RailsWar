@@ -51,21 +51,23 @@ export default class Database {
      * Enregistre les données utilisateurs dans la base de données
      * 
      * @param { L'email de l'utilisateur } email 
-     * @param { Le password de l'utilisateur } password 
+     * @param { Le password de l'utilisateur } hashed_password 
      * @param { Le nom + prénom de l'utilisateur } name 
      */
-    register_user (email, password, name) {
+    register_user (email, hashed_password, name) {
 
         const User_model = this.models["user"];
+
         const user_config = {
             name : name,
             mail_adress : email,
-            password : password
+            password : hashed_password
         };
 
         const user = new User_model(user_config);
         user.save((err, item) => {
             if (err) return console.log(err)
+            
             console.log("item saved");
         });
     }

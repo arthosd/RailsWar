@@ -1,0 +1,2 @@
+POST   http://localhost:9080/user
+content-type: application/json
