@@ -1,0 +1,39 @@
+##### Get gare details
+GET http://localhost:9080/gare/q=antibes
+
+########
+GET http://localhost:9080/gare
+
+######## Get Price details
+GET http://localhost:9080/price/from=AGEN&to=SETE
+
+##### Ajoute un utilsateur dans la bdd
+
+POST http://localhost:9080/user/sign
+Content-Type: application/json
+
+{
+    "name" :"Thalya fossey",
+    "pwd" : "1111111111",
+    "email" :"winnie@gmail.com"
+}
+
+###### Check User (output OK)
+POST http://localhost:9080/user/log
+Content-Type: application/json
+
+{
+    "name" :"Thalya fossey",
+    "pwd" : "1111111111",
+    "email" :"winnie@gmail.com"
+}
+
+#### Password do not macth
+POST http://localhost:9080/user/log
+Content-Type: application/json
+
+{
+    "name" :"Thalya fossey",
+    "pwd" : "111111111",
+    "email" :"winnie@gmail.com"
+}
