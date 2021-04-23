@@ -4,6 +4,22 @@
 
 import mongoose from 'mongoose';
 
+const gare_schema = {
+    nom_gare : {
+        type : String,
+        lowercase : true
+    },
+    id : {
+        unique : true,
+        required : true,
+        type : Number
+    },
+    NOM_REG : String,
+    NOM_DEP : String,
+    Latitude : Number,
+    Longitude : Number
+}
+
 const user_schema = {
     name : String,
     mail_adress : {
@@ -19,7 +35,8 @@ const user_schema = {
 }
 
 const models = {
-    user : mongoose.model("user", user_schema)
+    user : mongoose.model("user", user_schema),
+    gare : mongoose.model("gare", gare_schema)
 }
 
 export default models;

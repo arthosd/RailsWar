@@ -8,7 +8,8 @@ export default class Database {
         this.db = undefined;
         this.database_url = 'mongodb://localhost/'+database_name;
         this.models = {
-            "user" : models.user
+            "user" : models.user,
+            "gare" : models.gare
         };
     }
     
@@ -65,7 +66,7 @@ export default class Database {
         };
 
         const user = new User_model(user_config);
-        user.save((err, item) =>  callback(err,item) );
+        user.save((err, item) => callback(err,item) );
     }
     
     /**
@@ -102,5 +103,34 @@ export default class Database {
                 success_callback(data);
             }
         })
+    }
+
+    add_gare (list_gare){
+        // Ajoute la liste des gares dasn la bdd
+        const Gare_model = this.models["gare"];
+
+        list_gare.forEach(element => {
+    
+            const gare_config = {
+                id : element.id,
+                nom_gare: element.Nom_Gare,
+                NOM_REG : element.NOM_REG,
+                NOM_DEP : element.NOM_DEP,
+                Latitude : element.Latitude,
+                Longitude : element.Longitude
+            };
+
+            console.log(gare_config.nom_gare)
+           
+            const gare = new Gare_model(gare_config);
+            gare.save((err, item) => {
+                if (err) {
+                    console.log(err);
+                }else {
+                    console.log(item);
+                }
+            } );
+        });
+        
     }
 }
