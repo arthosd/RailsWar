@@ -5,18 +5,18 @@
         <div class="bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100"></div>
 
         <!-- Pushable content along with off-canvas opener. -->
-        <div class="bs-offset-main bs-canvas-anim bg-secondary">
+        <div class="bs-offset-main bs-canvas-anim bg-light" style="color: #8f1338;">
             <button class="btn btn-info" type="button" data-toggle="canvas" data-target="#bs-canvas-left"
-                aria-expanded="false" aria-controls="bs-canvas-left">&#9776;</button>
+                aria-expanded="false" aria-controls="bs-canvas-left"style="background-color: #8f1338;">&#9776;</button>
             Display search tab
         </div>
 
         <!-- Off-canvas sidebar markup, left -->
-        <div id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-secondary h-100">
-            <header class="bs-canvas-header p-3 bg-info">
-                <h4 class="d-inline-block text-light mb-0">Search tab</h4>
+        <div id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed h-100" style="background-color: #8f1338;">
+            <header class="bs-canvas-header p-3 bg-light">
+                <h4 class="d-inline-block mb-0" style="color: #8f1338;">Search tab</h4>
                 <button type="button" class="bs-canvas-close close" aria-label="Close"><span aria-hidden="true"
-                        class="text-light">&times;</span></button>
+                    style="color: #8f1338;" >&times;</span></button>
             </header>
             <div class="bs-canvas-content px-3 py-5">
                 <form role="form">
@@ -28,9 +28,9 @@
                         <input type="lieu_arrivee" name="lieu_arrivee" id="lieu_arrivee"
                             class="form-control form-control-sm" placeholder="Arrivée...">
                     </div>
-                    <div class="shadow p-2 mb-2 bg-info">
-                    <input class="btn btn-secondary btn-lg btn-block" type="submit" value="Search">
-                    </div>
+                    <!-- <div class="shadow p-2 mb-2 bg-light"> -->
+                    <input class="btn btn-light btn-lg btn-block" style="color: #8f1338;" type="submit" value="Search">
+                    <!-- </div> -->
                 </form>
                 <div>
                     <hr style="height:1px;border:none;color:#333;background-color:#333;"/>

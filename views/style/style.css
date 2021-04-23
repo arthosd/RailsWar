@@ -8,6 +8,25 @@
   padding: 0;
 }
 
+.btn-light {
+  color:white;
+  border-radius: 50px;
+}
+
+.avatar {
+  border-radius: 25px;
+}
+
+.shadow {
+  border-radius: 25px;
+}
+
+.card {
+  border-radius: 25px;
+  background-color: white;
+  /* color: white; */
+}
+
 #fixed-sidebar {
   position: fixed;
   max-width: 20%;
