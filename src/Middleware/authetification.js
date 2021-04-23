@@ -1,7 +1,6 @@
 import Database from './../Database/Database.js';       // Database 
 import bcrypt from 'bcrypt';                            // Hashing librairies
 
-
 /**
  * 
  * Inscription à la BDD sur le site

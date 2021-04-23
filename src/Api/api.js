@@ -9,9 +9,9 @@ import axios from 'axios';
  * @param { Deparature city } origin 
  * @param { Destination city } destination 
  */
-export function get_price(callback,origin, destination) {
+export function get_price(callback, rejection,origin, destination) {
 
-    var url = "https://ressources.data.sncf.com/api/records/1.0/search/?dataset=tarifs-intercites-de-jour&q=&sort=origine&facet=origine&facet=destination&refine.origine="+origin;
+    var url = "https://ressources.data.sncf.com/api/records/1.0/search/?dataset=tarifs-intercites-de-jour&q=&rows=300&sort=origine&facet=origine&facet=destination&refine.origine="+origin;
 
     if (destination != undefined) {
         url = url+"&refine.destination="+destination
@@ -22,7 +22,7 @@ export function get_price(callback,origin, destination) {
         callback(response);
 
     }).catch((err) => {
-        console.log(err);
+        rejection(err);
     })
 }
 
