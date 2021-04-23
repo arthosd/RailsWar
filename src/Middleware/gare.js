@@ -7,7 +7,7 @@ import Database from './../Database/Database.js';       // Database
  * @param { Request } req 
  * @param { Resoslved } res 
  */
- export function prices (req, res) {
+export function prices (req, res) {
 
     const origin = req.params.from;
     const destination = req.params.to;                   // Peut être undefined
@@ -35,11 +35,41 @@ import Database from './../Database/Database.js';       // Database
 }
 
 /**
- * Renvoie les propositions de nom de gares
+ * Renvoie toutes les gares
  * 
  * @param {*} req 
  * @param {*} res 
  */
- export function autocomplete (req, res) {
+export function get_all_gare (req, res) {
+
+    const db = new Database("railswars");                   // On se connexte à la bdd
+
+    db.connect(
+        () => {                                             // Quand on est connecté
+            db.get_all_gare(
+                (err, data) => {
+                    
+                    if (err) {
+                        res.sendStatus(500);                // Code d'erreur serveur
+                    }else {
+                        res.send(data);                     // On envoie toutes les gares
+                    }
+                } 
+            );
+        },
+        () => {
+            res.senStatus(500);                             // Code d'erreur serveur
+        }
+    );
+}
+
+/**
+ * Renvoie une gare si elle est dans la Base de données
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ */
+export function get_gare (req, res) {
+
 
 }
