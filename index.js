@@ -1,7 +1,13 @@
-import Database from './src/Database/Database.js';
+import { inscription, connexion } from './src/Middleware/authetification.js';
+import cors from 'cors'
 import express from 'express';
+import bodyParser from 'body-parser';
 
 const app = express();
+
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
 app.set("view engine", 'ejs');
 
@@ -9,30 +15,8 @@ app.get('/', function(req, res) {
     res.render('Templates/index')
   });
 
-app.post('/user',(req,res)=>{
+app.post('/user/sign',(req, res) =>  { inscription(req, res); } );
 
-  const database= new Database("railswars");
+app.post('/user/log' , (req, res) => { connexion(req, res); } );
 
-  database.connect( () => {},() => {} );
-  database.register_user(req.body.mail,req.body.password,req.body.name);
-
-  res.send(200);
-});
-
-app.get('/user/:email&:pwd' , (req, res) => {
-    const db = new Database("railswars");
-
-    db.connect(() => {
-        console.log("Connected")
-    }, () => {
-        console.log("Not Connected");
-    })
-
-    db.verify_user(req.params.email, req.params.pwd, () => {
-        res.send(200);// L'utilisateur est 
-    }, () => {
-        res.send(400); // l'utilisateur n'est pas dans la base de données
-    });
-})
-
-app.listen(8080)
+app.listen(9080)

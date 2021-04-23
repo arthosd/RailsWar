@@ -4,7 +4,23 @@
 
 import mongoose from 'mongoose';
 
-export const user_schema = {
+const gare_schema = {
+    nom_gare : {
+        type : String,
+        lowercase : true
+    },
+    id : {
+        unique : true,
+        required : true,
+        type : Number
+    },
+    NOM_REG : String,
+    NOM_DEP : String,
+    Latitude : Number,
+    Longitude : Number
+}
+
+const user_schema = {
     name : String,
     mail_adress : {
         type :String,
@@ -18,14 +34,9 @@ export const user_schema = {
     }
 }
 
-export const sncf_schema = {
-    
-};
+const models = {
+    user : mongoose.model("user", user_schema),
+    gare : mongoose.model("gare", gare_schema)
+}
 
-/**
- * Créer un model mongoose.
- * 
- * @param { Le nom du schéma } name_schema 
- * @param { Le schéma lui même } schema 
- */
-export default function create_model (name_schema, schema) { return mongoose.model(name_schema, schema); }
+export default models;

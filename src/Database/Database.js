@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import create_model,{ user_schema } from './Schema.js';
+import models from './Schema.js';
 
 export default class Database {
 
@@ -8,7 +8,8 @@ export default class Database {
         this.db = undefined;
         this.database_url = 'mongodb://localhost/'+database_name;
         this.models = {
-            "user" : create_model("user", user_schema)
+            "user" : models.user,
+            "gare" : models.gare
         };
     }
     
@@ -51,23 +52,21 @@ export default class Database {
      * Enregistre les données utilisateurs dans la base de données
      * 
      * @param { L'email de l'utilisateur } email 
-     * @param { Le password de l'utilisateur } password 
+     * @param { Le password de l'utilisateur } hashed_password 
      * @param { Le nom + prénom de l'utilisateur } name 
      */
-    register_user (email, password, name) {
+    register_user (email, hashed_password, name, callback) {
 
         const User_model = this.models["user"];
+
         const user_config = {
             name : name,
             mail_adress : email,
-            password : password
+            password : hashed_password
         };
 
         const user = new User_model(user_config);
-        user.save((err, item) => {
-            if (err) return console.log(err)
-            console.log("item saved");
-        });
+        user.save((err, item) => callback(err,item) );
     }
     
     /**
@@ -80,21 +79,58 @@ export default class Database {
      * @param {*} user_in_callback  fonction à déclencher si mle 
      * @param {*} user_out_callback 
      */
-    verify_user (email,pwd, user_in_callback, user_out_callback) {
+    verify_user (email,pwd, user_in_callback, err_callback) {
         
         const User_model = this.models["user"];
         User_model.find({"mail_adress" : email, "password":pwd },(err, data) => {
 
             if (err) {
                 console.log(err);
-                return undefined;
+                err_callback (err);
+            }else {
+                user_in_callback(data)// On appelle la fonction de "rejet"
             }
-
-            if (data.length === 0)
-                user_out_callback()// On appelle la fonction de "rejet"
-            else 
-                user_in_callback()// ON appelle la fonction de "ok"
-
         })
+    }
+
+    get_user (email, success_callback, error_callback) {
+
+        const User_model = this.models["user"];
+        User_model.findOne({"mail_adress" : email} , (err, data) => {
+            if (err) {
+                error_callback (err);
+            }else {
+                success_callback(data);
+            }
+        })
+    }
+
+    add_gare (list_gare){
+        // Ajoute la liste des gares dasn la bdd
+        const Gare_model = this.models["gare"];
+
+        list_gare.forEach(element => {
+    
+            const gare_config = {
+                id : element.id,
+                nom_gare: element.Nom_Gare,
+                NOM_REG : element.NOM_REG,
+                NOM_DEP : element.NOM_DEP,
+                Latitude : element.Latitude,
+                Longitude : element.Longitude
+            };
+
+            console.log(gare_config.nom_gare)
+           
+            const gare = new Gare_model(gare_config);
+            gare.save((err, item) => {
+                if (err) {
+                    console.log(err);
+                }else {
+                    console.log(item);
+                }
+            } );
+        });
+        
     }
 }
