@@ -10,39 +10,39 @@ import bcrypt from 'bcrypt';                            // Hashing librairies
  * @param { Response received from server } res 
  * @param { The next middleware } next 
  */
-export function inscription(req, res, next) {
+export function inscription(req, res) {
 
-    const saltRounds = 10;                                 // Pour aider le hashing
-    const password_to_hash = res.body.password;            // Le password à chiffrer
+    const saltRounds = 10;
+    const pwd = req.body.pwd;                               // Le mot de passe donnée par post
 
-    bcrypt.hash(password_to_hash, saltRounds, (err, hash) => {
+    bcrypt.hash(pwd, saltRounds,(err, hash) => {
 
-        if (err) {                                          // S'il y a une erreur
-            console.log(err)
-            res.send(400);                                  // On sort de la fonction en retournant un code d'erreur 400
+        if (err) {
+            res.sendStatus(500);                            // Code d'erreur serveur
+        }else {
+
+            const db = new Database("railswars");           // Connexion à la base de données
+
+            db.connect( () => {
+                // Connexion établit
+                db.register_user(
+                    req.body.email,                         // L'email données par post
+                    hash,                                   // Le mot de passe chiffré
+                    req.body.name,                          // Le nom données par post
+                    (err, item_saved) => {
+                        if (err) {
+                            res.json(err);                  // On envoie l'erreur
+                        } else {
+                            res.json(item_saved);           // On envoie l'item enregistré
+                        }
+                    }
+                );
+            }, () => {
+                // Connexion raté
+                res.sendStatus(500);                        // Code d'erreur serveur
+            });
         }
-
-        const database= new Database("railswars");          // On ouvre une connexion à la base de données
-        database.connect(() => {
-            
-            database.register_user(                         // On enregistre dans la base de données
-                res.body.email,
-                hash,                                       // Le mot de passe chiffré
-                res.body.name
-            );
-
-                res.send(200);                              // Code de succès
-                return 200;
-        }, () => {
-            console.log("C'est pas bon")
-            res.send(500);
-            return 500;
-        })
     });
-
-    if (next != undefined) { next (); }                     // on appelle le prochain middleware
-
-    res.send(200)
 } 
 
 /**
@@ -53,31 +53,29 @@ export function inscription(req, res, next) {
  * @param { Response received from server } res 
  * @param { The next middleware } next 
  */
-export function connexion (req, res, next) {
+export function connexion (req, res) {
 
-    const database = new Database("railswars");             // On ouvre la bdd
+    const db = new Database("railswars");
 
-    database.connect(() => {
+    db.get_user(
+        req.body.email,
+        (data) => {
+            if (data.length === 0) {
+                res.send("Email mismatch");
+            }else {
 
-        database.verify_user(req.params.email, req.params.pwd, () => {
-            // Si c'est bon
-            console.log("C'est bon");
-            res.send(200);
-            return;
-
-        } , () => {
-            // Si c'est pas bon
-            console.log("C'est pas bon");
-            res.send(400);
-            return;
-        })
-
-    } , () => {
-        res.send(500);
-        return;
-    })
-    
-    if (next != undefined) {
-        next();
-    }
+                bcrypt.compare(req.body.pwd, data.password,(err, result) => {
+                    
+                    if (result === true) {
+                        res.send("OK");
+                    }else {
+                        res.send("Password not Macth");
+                    }
+                });
+            }
+        },
+        (err) => {
+            res.sendStatus(500);
+        }
+    );
 }

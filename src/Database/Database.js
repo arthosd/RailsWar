@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import create_model,{ user_schema } from './Schema.js';
+import models from './Schema.js';
 
 export default class Database {
 
@@ -8,7 +8,7 @@ export default class Database {
         this.db = undefined;
         this.database_url = 'mongodb://localhost/'+database_name;
         this.models = {
-            "user" : create_model("user", user_schema)
+            "user" : models.user
         };
     }
     
@@ -54,7 +54,7 @@ export default class Database {
      * @param { Le password de l'utilisateur } hashed_password 
      * @param { Le nom + prénom de l'utilisateur } name 
      */
-    register_user (email, hashed_password, name) {
+    register_user (email, hashed_password, name, callback) {
 
         const User_model = this.models["user"];
 
@@ -65,11 +65,7 @@ export default class Database {
         };
 
         const user = new User_model(user_config);
-        user.save((err, item) => {
-            if (err) return console.log(err)
-            
-            console.log("item saved");
-        });
+        user.save((err, item) =>  callback(err,item) );
     }
     
     /**
@@ -82,21 +78,29 @@ export default class Database {
      * @param {*} user_in_callback  fonction à déclencher si mle 
      * @param {*} user_out_callback 
      */
-    verify_user (email,pwd, user_in_callback, user_out_callback) {
+    verify_user (email,pwd, user_in_callback, err_callback) {
         
         const User_model = this.models["user"];
         User_model.find({"mail_adress" : email, "password":pwd },(err, data) => {
 
             if (err) {
                 console.log(err);
-                return undefined;
+                err_callback (err);
+            }else {
+                user_in_callback(data)// On appelle la fonction de "rejet"
             }
+        })
+    }
 
-            if (data.length === 0)
-                user_out_callback()// On appelle la fonction de "rejet"
-            else 
-                user_in_callback()// ON appelle la fonction de "ok"
+    get_user (email, success_callback, error_callback) {
 
+        const User_model = this.models["user"];
+        User_model.findOne({"mail_adress" : email} , (err, data) => {
+            if (err) {
+                error_callback (err);
+            }else {
+                success_callback(data);
+            }
         })
     }
 }
