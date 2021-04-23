@@ -1,0 +1,109 @@
+#map_accueil {
+  /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-light {
+  color:white;
+  border-radius: 50px;
+}
+
+.avatar {
+  border-radius: 25px;
+}
+
+.shadow {
+  border-radius: 25px;
+}
+
+.card {
+  border-radius: 25px;
+  background-color: white;
+  /* color: white; */
+}
+
+#fixed-sidebar {
+  position: fixed;
+  max-width: 20%;
+  color: white;
+  z-index: 2;
+}
+
+#map {
+  /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+  height: 80%;
+  width: 100%;
+  /* position: absolute; */
+  margin: 0;
+  padding: 0;
+}
+
+#search{
+  padding-top: 175px;
+  padding-bottom: 175px;
+}
+
+.container{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  /*margin-bottom: 255px;*/
+}
+
+html, body {
+  height: 100%;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+  margin-top: 255px;
+}
+
+.page-holder {
+  min-height: 100vh;
+}
+
+.bg-cover {
+  background-size: cover !important;
+}
+
+.bs-canvas-overlay {
+  opacity: 0;
+  z-index: -1;
+}
+
+.bs-canvas-overlay.show {
+  opacity: 0.85;
+  z-index: 1100;
+}
+
+.bs-canvas {
+  top: 0;
+  width: 0;
+  z-index: 1110;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.bs-canvas-left {
+  left: 0;
+}
+
+.bs-canvas-right {
+  right: 0;
+}
+
+.bs-canvas-anim {
+  transition: all .4s ease-out;
+  -webkit-transition: all .4s ease-out;
+  -moz-transition: all .4s ease-out;
+  -ms-transition: all .4s ease-out;
+}
