@@ -52,7 +52,7 @@ export function get_all_gare (req, res) {
                     if (err) {
                         res.sendStatus(500);                // Code d'erreur serveur
                     }else {
-                        res.send(data);                     // On envoie toutes les gares
+                        res.json(data);                     // On envoie toutes les gares
                     }
                 } 
             );
@@ -70,6 +70,25 @@ export function get_all_gare (req, res) {
  * @param {*} res 
  */
 export function get_gare (req, res) {
+    const db = new Database("railswars");                   // On se connexte à la bdd
 
-
+    db.connect(
+        () => {                                             // Quand on est connecté
+            db.get_gare_data(
+                (err, data) => {
+                    
+                    if (err) {
+                        res.sendStatus(500);                // Code d'erreur serveur
+                    }else {
+                        res.json(data);                     // On envoie toutes les gares
+                    }
+                },
+                req.params.q
+            );
+        },
+        () => {
+            console.log("ERROOOOOORRR")
+            res.senStatus(500);                             // Code d'erreur serveur
+        }
+    );
 }

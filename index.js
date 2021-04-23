@@ -1,5 +1,5 @@
 import { inscription, connexion } from './src/Middleware/authetification.js';
-import { prices , get_all_gare} from './src/Middleware/gare.js';
+import { prices , get_all_gare, get_gare} from './src/Middleware/gare.js';
 import cors from 'cors'
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -22,7 +22,7 @@ app.post('/user/log' , (req, res) => { connexion(req, res); } );
 app.get('/price/from=:from&to=:to', (req, res) => { prices (req, res); });
 app.get('/price/from=:from', (req, res) => { prices (req, res); });
 
-app.get('/gare', (req, res) => { get_all_gare(req,res) } );
-app.get('/gare/q=:name', (req, res)=> {  })
+app.get('/gare', (req, res) => { get_all_gare(req,res); });
+app.get('/gare/q=:q', (req, res)=> { get_gare(req, res); });
 
 app.listen(9080)

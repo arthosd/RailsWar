@@ -105,6 +105,13 @@ export default class Database {
         })
     }
 
+    get_gare_data (callback,gare_name) {
+        const Gare_model = this.models["gare"];
+
+        Gare_model.find({"nom_gare": gare_name},(err, data) => {
+            callback(err, data);
+        });
+    }
     get_all_gare (callback) {
         const Gare_model = this.models["gare"];
 
