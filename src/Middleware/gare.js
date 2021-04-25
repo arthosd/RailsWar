@@ -44,23 +44,20 @@ export function get_all_gare (req, res) {
 
     const db = new Database("railswars");                   // On se connexte à la bdd
 
-    db.connect(
-        () => {                                             // Quand on est connecté
-            db.get_all_gare(
-                (err, data) => {
-                    
-                    if (err) {
-                        res.sendStatus(500);                // Code d'erreur serveur
-                    }else {
-                        res.json(data);                     // On envoie toutes les gares
-                    }
-                } 
-            );
+    db.connect();
+
+    db.get_all_gare(
+        (err, data) => {
+            if (err) {
+                res.sendStatus(500);
+            } else {
+                res.json(data)
+            }
         },
         () => {
-            res.senStatus(500);                             // Code d'erreur serveur
+
         }
-    );
+    )
 }
 
 /**
@@ -70,25 +67,19 @@ export function get_all_gare (req, res) {
  * @param {*} res 
  */
 export function get_gare (req, res) {
+    
     const db = new Database("railswars");                   // On se connexte à la bdd
 
-    db.connect(
-        () => {                                             // Quand on est connecté
-            db.get_gare_data(
-                (err, data) => {
-                    
-                    if (err) {
-                        res.sendStatus(500);                // Code d'erreur serveur
-                    }else {
-                        res.json(data);                     // On envoie toutes les gares
-                    }
-                },
-                req.params.q
-            );
+    db.connect();
+
+    db.get_gare_data(
+        (err, data) => {
+            if (err) {
+                res.sendStatus(500);                // Code d'erreur serveur
+            } else {
+                res.json(data);                     // On envoie toutes les gares
+            }
         },
-        () => {
-            console.log("ERROOOOOORRR")
-            res.senStatus(500);                             // Code d'erreur serveur
-        }
-    );
+        req.params.q
+    )
 }
