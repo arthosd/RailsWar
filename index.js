@@ -1,4 +1,4 @@
-import { inscription, connexion } from './src/Middleware/authetification.js';
+import { inscription, connexion , profil_logged} from './src/Middleware/authetification.js';
 import { prices , get_all_gare, get_gare} from './src/Middleware/gare.js';
 import cors from 'cors'
 import express from 'express';
@@ -42,15 +42,7 @@ app.get('/sign', function (req, res) {
   res.render('Templates/sign');
 });
 
-app.get('/profil/logged', function (req, res) {
-
-  // Si il est logged
-
-  res.locals.title = "Profil";
-  res.locals.firstname = "John"
-  res.locals.lastname = "Doe"
-  res.render('Templates/profil');
-});
+app.get('/profil/logged', (req, res) => { profil_logged (req, res) });
 
 app.get('/profil', function (req, res) {
 
@@ -60,11 +52,7 @@ app.get('/profil', function (req, res) {
     res.redirect('/profil/logged')
   }else {
 
-    res.locals.title = "Nope";
-    res.locals.firstname = "Nope"
-    res.locals.lastname = "Nope"
-
-    res.render('Templates/profil');
+    res.redirect("/sign")
   }
 });
 

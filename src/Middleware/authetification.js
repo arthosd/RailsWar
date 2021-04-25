@@ -90,3 +90,27 @@ export function connexion (req, res) {
         }
     );
 }
+
+export function profil_logged(req, res) {
+
+    const email = req.session.email;
+    console.log(email)
+
+    const db = new Database("railswars");
+    db.connect();
+    
+    db.get_user(
+        email,
+        (data) => {
+
+            res.locals.title = "Profil"
+            res.locals.firstname = data.name
+            res.locals.lastname = ""
+
+            res.render('Templates/profil');
+        },
+        (err) => {
+            res.send(500);
+        }
+    )
+}
