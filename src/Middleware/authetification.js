@@ -73,7 +73,10 @@ export function connexion (req, res) {
                 bcrypt.compare(req.body.password, data.password,(err, result) => {
 
                     if (result === true) {
-                        res.send("OK");
+                        req.session.email = req.body.email;
+                        req.session.password = req.body.password;
+
+                        res.send("/search");
                     }else {
                         res.send("Password not Macth");
                     }

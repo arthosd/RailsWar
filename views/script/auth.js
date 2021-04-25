@@ -76,7 +76,7 @@ function connexion () {
             type : 'POST',
             data :data_to_send,
             success :  function (response, status) {
-                console.log(response)
+                window.location.pathname = response
             },
             error : function (resultat, status, erreur) {
                 // Mettre une div d'erreur visible
