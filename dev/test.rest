@@ -23,9 +23,9 @@ POST http://localhost:9080/user/log
 Content-Type: application/json
 
 {
-    "name" :"Thalya fossey",
+    "name" :"Elie Debs",
     "pwd" : "1111111111",
-    "email" :"winnie@gmail.com"
+    "email" :"arthosd@gmail.com"
 }
 
 #### Password do not macth

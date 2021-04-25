@@ -12,51 +12,54 @@
                   <h3 class="card-header" style="background-color: transparent; color: #8f1338;">Inscrivez-vous ...</h3>
                 <!-- </div> -->
                 <div class="card-block">
-                  <form role="form" action ="/user/sign" method="POST" >
+
+                  <!-- --------------------Le form pour l'inscription -------------------------- -->
+                  
                     <div class="row">
                       <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
                           <input type="text" name="first_name" id="first_name" class="form-control form-control-sm"
-                            placeholder="First Name">
+                            placeholder="First Name" onfocus="reset_style_form()">
                         </div>
                       </div>
                       <div class="col-xs-6 col-sm-6 col-md-6">
+
                         <div class="form-group">
                           <input type="text" name="last_name" id="last_name" class="form-control form-control-sm"
-                            placeholder="Last Name">
+                            placeholder="Last Name" onfocus="reset_style_form()">
                         </div>
                       </div>
                     </div>
 
                     <div class="form-group">
                       <input type="email" name="email" id="email" class="form-control form-control-sm"
-                        placeholder="Email Address">
+                        placeholder="Email Address" onfocus="reset_style_form()">
                     </div>
 
                     <div class="row">
                       <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
                           <input type="password" name="password" id="password" class="form-control form-control-sm"
-                            placeholder="Password">
+                            placeholder="Password" onfocus="reset_style_password()">
                         </div>
                       </div>
                       <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
-                          <input type="password" name="password_confirmation" id="password_confirmation"
+                          <input type="password" name="password_confirmation" id="password_confirmation" onfocus="reset_style_password()"
                             class="form-control form-control-sm" placeholder="Confirm Password">
                         </div>
                       </div>
+                      <div id="not_match_password" hidden> Les mots de passe ne sont pas identique </div>
                     </div>
 
-                    <input class="btn btn-light btn-lg btn-block" style="background-color: #8f1338;" type="submit" value="Register">
-
-                  </form>
+                    <button class="btn btn-light btn-lg btn-block" style="background-color: #8f1338;" onclick="register()"> Register </button>
+                    <!-- Div invisible pour afficher une erreur -->
+                    <div id="not_full_form" hidden> Le formulaire n'est pas rempli en entier </div>
                 </div>
                 <!-- <div class="card-header"> -->
                   <h3 class="card-header" style="background-color: transparent; color: #8f1338;">... Connectez-vous</h3>
                 <!-- </div> -->
                 <div class="card-block">
-                  <form role="form">
                     <div class="form-group">
                       <input type="email" name="email" id="user_email" class="form-control form-control-sm"
                         placeholder="Email Address">
@@ -66,15 +69,17 @@
                         placeholder="Password">
                     </div>
 
-                    <input class="btn btn-light btn-lg btn-block" style="background-color: #8f1338;" type="submit" value="Log In">
-
-                  </form>
+                    <button class="btn btn-light btn-lg btn-block" onclick="connexion()" style="background-color: #8f1338;"> Log in </button>
+                    <div id="not_full_input" hidden> Les deux champs doivent etre renseignés </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Inscription / Connexion -->
+		<script src="/views/script/auth.js"> </script>
   </body>
 
   <%- include ("footer") %>

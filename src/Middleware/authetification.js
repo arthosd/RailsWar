@@ -16,13 +16,11 @@ export function inscription(req, res) {
 
 
     const obj = {
-        name : req.body.first_name +" " + req.body.last_name,
+        name : req.body.name,
         password : req.body.password,
         email: req.body.email
     }
-
     console.log(obj)
-
     bcrypt.hash(pwd, saltRounds,(err, hash) => {
 
         if (err) {
@@ -72,8 +70,8 @@ export function connexion (req, res) {
                 res.send("Email mismatch");
             } else {
 
-                bcrypt.compare(req.body.pwd, data.password,(err, result) => {
-                    
+                bcrypt.compare(req.body.password, data.password,(err, result) => {
+
                     if (result === true) {
                         res.send("OK");
                     }else {
