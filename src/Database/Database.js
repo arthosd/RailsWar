@@ -135,7 +135,6 @@ export default class Database {
                 Longitude : element.Longitude
             };
 
-            console.log(gare_config.nom_gare)
            
             const gare = new Gare_model(gare_config);
             gare.save((err, item) => {
@@ -146,6 +145,6 @@ export default class Database {
                 }
             } );
         });
-        
+        console.log("Les gares ont été ajouter dans la base de données")   
     }
 }

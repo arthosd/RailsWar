@@ -1,5 +1,5 @@
 import { inscription, connexion , profil_logged} from './src/Middleware/authetification.js';
-import { prices , get_all_gare, get_gare, handle_search} from './src/Middleware/gare.js';
+import { prices , get_all_gare, get_gare, handle_search, add_all_gare} from './src/Middleware/gare.js';
 import cors from 'cors'
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -57,5 +57,8 @@ app.get('/history', function (req, res) {
   res.locals.title = "History";
   res.render('Templates/history');
 });
+
+
+app.get('/create', (req, res) => { add_all_gare(req, res) })
 
 app.listen(9080)

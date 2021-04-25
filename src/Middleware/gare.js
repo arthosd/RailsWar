@@ -1,5 +1,6 @@
 import { get_price } from './../Api/api.js';            // API file
 import Database from './../Database/Database.js';       // Database 
+import {data} from './../Database/data.js';
 
 /**
  * Renvoies les prix à en fonction de la destination
@@ -84,7 +85,6 @@ export function get_gare (req, res) {
     )
 }
 
-
 export function handle_search(req, res) {
 
 
@@ -108,4 +108,15 @@ export function handle_search(req, res) {
         depart,
         arrive
     )
+}
+
+export function add_all_gare (req, res) {
+
+    const db = new Database("railswars");
+
+    db.connect();
+
+    db.add_gare(data);
+
+    res.send("200");
 }
