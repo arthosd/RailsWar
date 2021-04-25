@@ -12,8 +12,16 @@ import bcrypt from 'bcrypt';                          // Hashing librairies
 export function inscription(req, res) {
 
     const saltRounds = 10;
-    const pwd = req.body.pwd;                               // Le mot de passe donnée par post
+    const pwd = req.body.password;                           // Le mot de passe donnée par post
 
+
+    const obj = {
+        name : req.body.first_name +" " + req.body.last_name,
+        password : req.body.password,
+        email: req.body.email
+    }
+
+    console.log(obj)
 
     bcrypt.hash(pwd, saltRounds,(err, hash) => {
 
@@ -26,15 +34,16 @@ export function inscription(req, res) {
             db.connect();
 
             db.register_user(
-                req.body.email,                         // L'email données par post
-                hash,                                   // Le mot de passe chiffré
-                req.body.name,                          // Le nom données par post
+                obj.email,                                  // L'email données par post
+                hash,                                       // Le mot de passe chiffré
+                obj.name,                                   // Le nom données par post
                 (err, item_saved) => {
                     if (err) {
                         res.json(err);
                     } else {
+                        console.log("ici")
                         console.log(item_saved)
-                        res.json(item_saved)
+                        res.redirect("/")
                     }
                 }
             )
