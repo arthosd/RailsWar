@@ -76,7 +76,7 @@ export function connexion (req, res) {
                         req.session.email = req.body.email;
                         req.session.password = req.body.password;
 
-                        res.send("/search");
+                        res.send("/");
                     }else {
                         res.send("Password not Macth");
                     }
@@ -94,7 +94,6 @@ export function connexion (req, res) {
 export function profil_logged(req, res) {
 
     const email = req.session.email;
-    console.log(email)
 
     const db = new Database("railswars");
     db.connect();

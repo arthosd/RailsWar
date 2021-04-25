@@ -35,101 +35,46 @@
                 <div>
                     <hr style="height:1px;border:none;color:#333;background-color:#333;"/>
                 </div>
-                <div class="shadow p-3 mb-5 bg-white">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    Départ : Paris
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    Destination : Marseille
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-8 col-md-8">
-                                <div class="form-group">
-                                    Date : 01/04/2021
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group centered">
-                                    Heure de départ : 12h30
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    Heure d'arrivée : 16h00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group centered">
-                                    Distance : 660 km
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    Prix : 120.35 euros
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="shadow p-3 mb-5 bg-white">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    Départ : Paris
+                <!-- For loop a mettre la  -->
+                <% for (var data in records) {%>
+                    <div class="shadow p-3 mb-5 bg-white">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        Départ : <%= records[data].fields.origine %>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        Destination : <%= records[data].fields.destination %>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    Destination : Marseille
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-8 col-md-8">
+                                    <div class="form-group">
+                                        Date : 01/04/2021
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-8 col-md-8">
-                                <div class="form-group">
-                                    Date : 01/04/2021
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group centered">
+                                        tarif 1 : <%= records[data].fields.plein_tarif_1ere %> $
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group centered">
-                                    Heure de départ : 14h30
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    Heure d'arrivée : 18h00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group centered">
-                                    Distance : 660 km
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    Prix : 103.95 euros
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        tarif 2 :  <%= records[data].fields.plein_tarif_2nde%> $
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <%}%>
+
             </div>
         </div>
 

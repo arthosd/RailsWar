@@ -1,5 +1,5 @@
 import { inscription, connexion , profil_logged} from './src/Middleware/authetification.js';
-import { prices , get_all_gare, get_gare} from './src/Middleware/gare.js';
+import { prices , get_all_gare, get_gare, handle_search} from './src/Middleware/gare.js';
 import cors from 'cors'
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -8,7 +8,7 @@ import session from 'express-session';  // Pour la session
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(session({secret :'session' }));
@@ -32,10 +32,7 @@ app.get('/', function (req, res) {
   res.render('Templates/accueil');
 });
 
-app.get('/search', function (req, res) {
-  res.locals.title = "Search";
-  res.render('Templates/search');
-});
+app.get('/search', (req, res) => { handle_search (req, res) });
 
 app.get('/sign', function (req, res) {
   res.locals.title = "Sign In";

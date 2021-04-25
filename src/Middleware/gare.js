@@ -10,7 +10,7 @@ import Database from './../Database/Database.js';       // Database
 export function prices (req, res) {
 
     const origin = req.params.from;
-    const destination = req.params.to;                   // Peut être undefined
+    const destination = req.params.to;                  // Peut être undefined
 
     get_price((response) => {                           // Success callback
         
@@ -81,5 +81,31 @@ export function get_gare (req, res) {
             }
         },
         req.params.q
+    )
+}
+
+
+export function handle_search(req, res) {
+
+
+    // on récupre les passage en parametre
+
+    const depart = req.query.lieu_depart;
+    const arrive = req.query.lieu_arrivee.length ==0 ? undefined : req.query.lieu_arrivee;
+
+    // On récupère les prix
+    get_price(
+        (data) => {
+
+            res.locals.title = "Search";
+            res.locals.records = data.data.records
+
+            res.render('Templates/search');
+        },
+        (err) => {
+
+        },
+        depart,
+        arrive
     )
 }
