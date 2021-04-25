@@ -1,5 +1,5 @@
-import Database from './../Database/Database.js';       // Database 
-import bcrypt from 'bcrypt';                            // Hashing librairies
+import Database from '../Database/Database.js';       // Database 
+import bcrypt from 'bcrypt';                          // Hashing librairies
 
 /**
  * 
@@ -14,6 +14,7 @@ export function inscription(req, res) {
     const saltRounds = 10;
     const pwd = req.body.pwd;                               // Le mot de passe donnée par post
 
+
     bcrypt.hash(pwd, saltRounds,(err, hash) => {
 
         if (err) {
@@ -21,25 +22,22 @@ export function inscription(req, res) {
         }else {
 
             const db = new Database("railswars");           // Connexion à la base de données
+             
+            db.connect();
 
-            db.connect( () => {
-                // Connexion établit
-                db.register_user(
-                    req.body.email,                         // L'email données par post
-                    hash,                                   // Le mot de passe chiffré
-                    req.body.name,                          // Le nom données par post
-                    (err, item_saved) => {
-                        if (err) {
-                            res.json(err);                  // On envoie l'erreur
-                        } else {
-                            res.json(item_saved);           // On envoie l'item enregistré
-                        }
+            db.register_user(
+                req.body.email,                         // L'email données par post
+                hash,                                   // Le mot de passe chiffré
+                req.body.name,                          // Le nom données par post
+                (err, item_saved) => {
+                    if (err) {
+                        res.json(err);
+                    } else {
+                        console.log(item_saved)
+                        res.json(item_saved)
                     }
-                );
-            }, () => {
-                // Connexion raté
-                res.sendStatus(500);                        // Code d'erreur serveur
-            });
+                }
+            )
         }
     });
 } 
@@ -56,12 +54,14 @@ export function connexion (req, res) {
 
     const db = new Database("railswars");
 
+    db.connect();
+
     db.get_user(
         req.body.email,
         (data) => {
             if (data.length === 0) {
                 res.send("Email mismatch");
-            }else {
+            } else {
 
                 bcrypt.compare(req.body.pwd, data.password,(err, result) => {
                     
@@ -72,9 +72,11 @@ export function connexion (req, res) {
                     }
                 });
             }
+            db.close();
         },
-        (err) => {
-            res.sendStatus(500);
+        (err) => { 
+            db.close();
+            res.sendStatus(500); 
         }
     );
 }

@@ -16,25 +16,26 @@ export default class Database {
     /**
      * Connect à la base de données et trigger les callbacks
      * si elles sont définit.
-     * 
-     * @param { Callback si tout se passe bien (optionnel) } success_callback 
-     * @param { Callback s'il y a une erreur (optionnel) } rejection_callback 
      */
-    connect(success_callback, rejection_callback) {
+    connect() {
 
         mongoose.connect(this.database_url, {
             useNewUrlParser: true, 
             useUnifiedTopology: true
         });
 
-        const db = mongoose.connection;
-
-        db.then(() => {
-            if (success_callback != undefined) { success_callback(); }
-        }).catch(() => {
-            if (rejection_callback != undefined) { rejection_callback(); }
-        })
+         this.db = mongoose.connection;
     }
+    /**
+     * Ferme la base de données
+     */
+    close () { mongoose.connection.close(); }
+    /**
+     * 
+     * @returns la connexion
+     */
+    get_instance () { return mongoose.connection }
+    
     /**
      * Ajoute un model dans le map de model BDD
      * 
@@ -64,7 +65,6 @@ export default class Database {
             mail_adress : email,
             password : hashed_password
         };
-
         const user = new User_model(user_config);
         user.save((err, item) => callback(err,item) );
     }
