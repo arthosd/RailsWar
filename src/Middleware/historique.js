@@ -51,3 +51,23 @@ export function get_historique_middleware(req, res) {
             }
         });
 }
+
+export function delete_historique_middleware (req, res) {
+
+    const db = new Database("railswars");
+    db.connect();
+
+    const email = req.session.email;
+
+    if (email) {
+
+        db.remove_historique(
+            email,
+            (err, data) => {
+                res.send(data);
+            }
+        );
+    }else {
+        res.send("Not Connected")
+    }
+}

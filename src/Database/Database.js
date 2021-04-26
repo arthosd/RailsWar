@@ -196,7 +196,14 @@ export default class Database {
      * 
      * @param { L'email de l'utilisateur } email 
      */
-    remove_historique (email) {
+    remove_historique (email , callback) {
 
+        const Historique_model = this.models["historique"];
+
+        Historique_model.deleteMany({
+            "email" : email
+        }, (err, data) => {
+            callback(err, data)
+        })
     }
 }

@@ -1,6 +1,6 @@
 import { inscription, connexion , profil_logged} from './src/Middleware/authetification.js';
 import { prices , get_all_gare, get_gare, handle_search, add_all_gare} from './src/Middleware/gare.js';
-import { add_historique_middleware, get_historique_middleware} from './src/Middleware/historique.js';
+import { add_historique_middleware, get_historique_middleware, delete_historique_middleware} from './src/Middleware/historique.js';
 
 import cors from 'cors'
 import express from 'express';
@@ -71,6 +71,7 @@ app.get('/history', (req, res) => {
 });
 
 app.post('/user/history', (req, res) => { add_historique_middleware(req, res) })
+app.get('/user/history/remove', (req, res) => { delete_historique_middleware(req, res) })
 
 // A retirer après
 app.get('/create', (req, res) => { add_all_gare(req, res) })
