@@ -1,4 +1,4 @@
-import { inscription, connexion , profil_logged} from './src/Middleware/authetification.js';
+import { inscription, connexion , profil_logged, logout} from './src/Middleware/authetification.js';
 import { prices , get_all_gare, get_gare, handle_search, add_all_gare} from './src/Middleware/gare.js';
 import { add_historique_middleware, get_historique_middleware, delete_historique_middleware} from './src/Middleware/historique.js';
 
@@ -22,6 +22,8 @@ app.use(express.static("Assets"));
 
 app.post('/user/sign',(req, res) =>  { inscription(req, res); } );
 app.post('/user/log' , (req, res) => { connexion(req, res); } );
+app.get('/logout', (req, res) => { logout(req, res) })
+
 
 app.get('/price/from=:from&to=:to', (req, res) => { prices (req, res); });
 app.get('/price/from=:from', (req, res) => { prices (req, res); });

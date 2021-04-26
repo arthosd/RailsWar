@@ -93,6 +93,15 @@ export function connexion (req, res) {
     );
 }
 
+export function logout (req, res) {
+
+    req.session.destroy((err) => {
+        if (err) { res.send(500); }
+
+        res.send('/');
+    })
+}
+
 export function profil_logged(req, res) {
 
     const email = req.session.email;
