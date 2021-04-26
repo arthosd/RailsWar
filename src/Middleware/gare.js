@@ -100,6 +100,8 @@ export function handle_search(req, res) {
             res.locals.title = "Search";
             res.locals.records = data.data.records
 
+            req.session.records = data.data.records;
+
             res.render('Templates/search');
         },
         (err) => {

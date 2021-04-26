@@ -31,14 +31,14 @@ app.get('/price/from=:from', (req, res) => { prices (req, res); });
 app.get('/gare', (req, res) => { get_all_gare(req,res); });
 app.get('/gare/q=:q', (req, res)=> { get_gare(req, res); });
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.locals.title = "Home";
   res.render('Templates/accueil');
 });
 
 app.get('/search', (req, res) => { handle_search (req, res) });
 
-app.get('/sign', function (req, res) {
+app.get('/sign', (req, res) => {
   res.locals.title = "Sign In";
   res.render('Templates/sign');
 });
@@ -61,9 +61,9 @@ app.get('/history/logged', (req, res) => { get_historique_middleware (req, res) 
 
 app.get('/history', (req, res) => {
 
-    if (req.session.email) {
+    if (req.session.email) { // Si la session existe
 
-      res.redirect('/history/logged');
+      res.redirect('/history/logged'); // on redirige vers le log
 
     } else {
 

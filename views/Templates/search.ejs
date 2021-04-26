@@ -50,7 +50,7 @@
                     </script>
 
                     <div class="shadow p-3 mb-5 bg-white">
-                        <div class="card-block" id="<%= data %>" onclick="item_selected(origine, destination, prix1, prix2, this.id)">
+                        <div class="card-block" id="<%= data %>" onclick="item_selected(this.id)">
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
@@ -60,13 +60,6 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         Destination : <%= records[data].fields.destination %>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-8 col-sm-8 col-md-8">
-                                    <div class="form-group">
-                                        Date : 01-04-2021
                                     </div>
                                 </div>
                             </div>

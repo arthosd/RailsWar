@@ -82,20 +82,14 @@ function initMap() {
                 });
             });
 
-function item_selected (origine, destination, prix1, prix2, id) {
-    
-    // Faire une ajax call pour ajouter les données dans la bdd
-    alert(id)
-    const data_to_send = {
-        origine : origine,
-        destination : destination,
-        prix1 : prix1,
-        prix2 : prix2
-    }
+function item_selected (id) {
+
     $.ajax({
         url:'/user/history',
         type:'POST',
-        data : data_to_send,
+        data : {
+            id : id
+        },
         success : (response, status) => {
             console.log(response);
         },
@@ -134,5 +128,5 @@ function item_selected (origine, destination, prix1, prix2, id) {
             // Mettre une div d'erreur visible
             console.log(status)
         }
-    }) 
+    })
 }
