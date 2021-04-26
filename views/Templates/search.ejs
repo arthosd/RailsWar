@@ -42,10 +42,12 @@
                     <script>
                         var origine = '<%= records[data].fields.origine %>'
                         var destination = '<%= records[data].fields.destination %>'
+                        var prix1 = '<%= records[data].fields.plein_tarif_1ere %>'
+                        var prix2 = '<%= records[data].fields.plein_tarif_2nde%> '
                     </script>
 
                     <div class="shadow p-3 mb-5 bg-white">
-                        <div class="card-block" onclick="item_selected(origine, destination)">
+                        <div class="card-block" onclick="item_selected(origine, destination, prix1, prix2)">
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">

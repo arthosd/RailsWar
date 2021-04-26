@@ -1,5 +1,7 @@
 import { inscription, connexion , profil_logged} from './src/Middleware/authetification.js';
 import { prices , get_all_gare, get_gare, handle_search, add_all_gare} from './src/Middleware/gare.js';
+import { add_historique_middleware} from './src/Middleware/historique.js';
+
 import cors from 'cors'
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -58,7 +60,9 @@ app.get('/history', function (req, res) {
   res.render('Templates/history');
 });
 
+app.post('/user/history', (req, res) => { add_historique_middleware(req, res) })
 
+// A retirer après
 app.get('/create', (req, res) => { add_all_gare(req, res) })
 
 app.listen(9080)

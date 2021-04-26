@@ -9,7 +9,8 @@ export default class Database {
         this.database_url = 'mongodb://localhost/'+database_name;
         this.models = {
             "user" : models.user,
-            "gare" : models.gare
+            "gare" : models.gare,
+            "historique" : models.historique
         };
     }
     
@@ -146,5 +147,52 @@ export default class Database {
             } );
         });
         console.log("Les gares ont été ajouter dans la base de données")   
+    }
+
+    /**
+     * Ajoute Les données d'historique dans la base de données
+     * 
+     * @param {*} email 
+     * @param {*} historique_data 
+     */
+    add_historique (email,historique_data, callback) {
+
+        const Historique_model = this.models['historique'];
+
+        console.log(historique_data)
+
+        const historique_data_to_store = {
+            origine :  historique_data.origine,
+            destination : historique_data.destination,
+            prix1 : historique_data.prix1,
+            prix2 : historique_data.prix2,
+            email : email,
+            timestamp : new Date().toDateString()
+        }
+
+        const historique = new Historique_model(historique_data_to_store); 
+
+        historique.save(
+            (err, item) => { callback (err, item) }
+        )
+    }
+
+    /**
+     * Récupère l'historique d'un utilisateur
+     * 
+     * @param { L'email de l'utilisateur } email 
+     */
+    get_historique (email) {
+        
+        
+    }
+
+    /**
+     * Efface tout l'historique d'un certain utilisateur
+     * 
+     * @param { L'email de l'utilisateur } email 
+     */
+    remove_historique (email) {
+
     }
 }

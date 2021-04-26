@@ -82,9 +82,28 @@ function initMap() {
                 });
             });
 
-function item_selected (origine, destination) {
+function item_selected (origine, destination, prix1, prix2) {
 
-    // Faire une ajax call
+    // Faire une ajax call pour ajouter les données dans la bdd
+
+    const data_to_send = {
+        origine : origine,
+        destination : destination,
+        prix1 : prix1,
+        prix2 : prix2
+    }
+
+    $.ajax({
+        url:'/user/history',
+        type:'POST',
+        data : data_to_send,
+        success : (response, status) => {
+            console.log(response);
+        },
+        error : (result, status, erreur) => {
+            console.log(erreur);
+        }
+    })
 
     var layerGroup1 = L.layerGroup().addTo(macarte);
     var layerGroup2 = L.layerGroup().addTo(macarte);
