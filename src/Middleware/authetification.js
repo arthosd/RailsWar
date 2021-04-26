@@ -20,7 +20,6 @@ export function inscription(req, res) {
         password : req.body.password,
         email: req.body.email
     }
-    console.log(obj)
     bcrypt.hash(pwd, saltRounds,(err, hash) => {
 
         if (err) {
@@ -39,8 +38,6 @@ export function inscription(req, res) {
                     if (err) {
                         res.json(err);
                     } else {
-                        console.log("ici")
-                        console.log(item_saved)
                         res.redirect('/')
                     }
                 }
@@ -127,4 +124,35 @@ export function profil_logged(req, res) {
             res.send(500);
         }
     )
+}
+
+export function modify_password (req ,res) {
+
+    const email = req.session.email; // On récupère l'email dans la session
+    const password = req.body.password; // Le mail a hashed
+    const saltRounds = 10;
+
+    bcrypt.hash(password, saltRounds,(err, hash) => {
+
+        if (err) {
+            res.sendStatus(500);                            // Code d'erreur serveur
+        }else {
+
+            const db = new Database("railswars");           // Connexion à la base de données
+             
+            db.connect();
+
+            db.modify_password(
+                email,                                      // L'email données par post
+                hash,                                       // Le mot de passe chiffre
+                (err, item) => {
+                    if (err) { res.send(500) }
+                    else { 
+                        console.log(item)
+                        res.send("OK"); 
+                    }
+                }
+            )
+        }
+    });
 }

@@ -104,6 +104,25 @@ export default class Database {
         })
     }
 
+    modify_password (email_to_update, hashed_password,callback) {
+
+        const User_model = this.models['user'];
+        const email = email_to_update;
+        const new_password = hashed_password;
+
+        console.log(new_password)
+        console.log(email)
+
+        User_model.findOneAndUpdate(
+            { email : email },
+            { password : new_password },
+            {  new : true },
+            (err, data) => {
+                callback(err, data);
+            }
+        )
+    }
+
     get_user (email, success_callback, error_callback) {
 
         const User_model = this.models["user"];

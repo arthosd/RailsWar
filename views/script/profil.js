@@ -27,3 +27,29 @@ function logout () {
         }
     })
 }
+
+function send() {
+
+    const password_to_send = $('#password').val();
+
+    $.ajax({
+        url :'/profil/account',
+        type : 'POST',
+        data : { password : password_to_send },
+        success : (response, status) => {
+            console.log(response)
+        },
+        error : (resultat, status, erreur) => {
+            // Mettre une div d'erreur visible
+            console.log(status)
+        }
+    })
+}
+
+function modify() {
+
+    $('#password').removeAttr('disabled'); // On retire le disabled
+    $('#password_button').attr("value","send");   // On change le nom  du bouton
+
+    $("#password_button").attr("onclick","send()");// La nouvelle fonction
+}

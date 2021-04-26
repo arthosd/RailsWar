@@ -22,35 +22,24 @@
 										<hr style="height:1px;border:none;color:#8f1338;background-color:#8f1338;" />
 									</div>
 									<div class="card-block">
-										<form role="form">
 											<div class="form-group">
 												<input type="email" name="email" id="email"
-													class="form-control form-control-sm" placeholder="Email Address"
+													class="form-control form-control-sm"  disabled placeholder="Email Address"
 													value=<%=email %>>
 											</div>
 
 											<div class="row">
 												<div class="col-xs-6 col-sm-6 col-md-6">
 													<div class="form-group">
-														<input type="password" name="new_password" id="new_password"
+														<input type="password" name="new_password" id="password"
 															class="form-control form-control-sm"
-															placeholder="New Password">
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 col-md-6">
-													<div class="form-group">
-														<input type="password" name="password_confirmation"
-															id="password_confirmation"
-															class="form-control form-control-sm"
-															placeholder="Confirm Password">
+															placeholder="Password" disabled>
 													</div>
 												</div>
 											</div>
 
-											<input class="btn btn-light btn-lg btn-block"
-												style="background-color: #8f1338;" type="submit" value="Save">
-
-										</form>
+											<button id="password_button"class="btn btn-light btn-lg btn-block"
+												style="background-color: #8f1338;" onclick="modify()"> Modifier </button>
 									</div>
 									<div>
 										<hr style="height:1px;border:none;color:#8f1338;background-color:#8f1338;" />
