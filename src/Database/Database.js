@@ -182,9 +182,13 @@ export default class Database {
      * 
      * @param { L'email de l'utilisateur } email 
      */
-    get_historique (email) {
-        
-        
+    get_historique (email, callback) {
+
+        const Historique_model = this.models["historique"];
+
+        Historique_model.find({"email": email},(err, data) => {
+            callback(err, data);
+        });
     }
 
     /**

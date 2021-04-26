@@ -28,3 +28,26 @@ export function add_historique_middleware(req, res) {
         res.send("Not connected")
     }
 }
+
+export function get_historique_middleware(req, res) {
+
+    const db = new Database("railswars");
+    db.connect();
+
+    const email = req.session.email;
+
+    db.get_historique(
+        email, 
+        (err, item) => {
+    
+            if(err) {
+                res.send(500);
+            } else {
+
+                res.locals.title = "History";
+                res.locals.historiques = item;
+                
+                res.render('Templates/history');
+            }
+        });
+}
