@@ -73,8 +73,10 @@ export function connexion (req, res) {
                 bcrypt.compare(req.body.password, data.password,(err, result) => {
 
                     if (result === true) {
+
                         req.session.email = req.body.email;
                         req.session.password = req.body.password;
+                        req.session.name = req.body.name
 
                         res.send("/");
                     }else {
@@ -94,6 +96,8 @@ export function connexion (req, res) {
 export function profil_logged(req, res) {
 
     const email = req.session.email;
+    const name = req.session.name;
+    const pwd = req.session.password;
 
     const db = new Database("railswars");
     db.connect();
@@ -104,6 +108,8 @@ export function profil_logged(req, res) {
 
             res.locals.title = "Profil"
             res.locals.firstname = data.name
+            res.locals.email = email
+            res.locals.password = data.password
             res.locals.lastname = ""
 
             res.render('Templates/profil');
