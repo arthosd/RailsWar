@@ -41,7 +41,7 @@ export function inscription(req, res) {
                     } else {
                         console.log("ici")
                         console.log(item_saved)
-                        res.redirect("/")
+                        res.redirect('/')
                     }
                 }
             )
@@ -78,7 +78,7 @@ export function connexion (req, res) {
                         req.session.password = req.body.password;
                         req.session.name = req.body.name
 
-                        res.send("/");
+                        res.send('/');
                     }else {
                         res.send("Password not Macth");
                     }

@@ -27,6 +27,16 @@ export default class Database {
 
          this.db = mongoose.connection;
     }
+
+    /**
+     * Déconnecte de la base de données
+     */
+    disconnect() {
+
+        mongoose.disconnect(this.database_url);
+        this.db = undefined
+    }
+
     /**
      * Ferme la base de données
      */

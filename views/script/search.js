@@ -1,4 +1,4 @@
-var lat = 48.852969;
+var lat = 45.852969;
 var lon = 2.349903;
 var macarte = null;
             
@@ -8,7 +8,7 @@ function initMap() {
                 
     // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
                 
-    macarte = L.map('map').setView([lat, lon], 11);
+    macarte = L.map('map').setView([lat, lon], 5);
                 
     // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
                 
@@ -82,17 +82,16 @@ function initMap() {
                 });
             });
 
-function item_selected (origine, destination, prix1, prix2) {
-
+function item_selected (origine, destination, prix1, prix2, id) {
+    
     // Faire une ajax call pour ajouter les données dans la bdd
-
+    alert(id)
     const data_to_send = {
         origine : origine,
         destination : destination,
         prix1 : prix1,
         prix2 : prix2
     }
-
     $.ajax({
         url:'/user/history',
         type:'POST',
@@ -117,9 +116,13 @@ function item_selected (origine, destination, prix1, prix2) {
                 url : '/gare/q='+destination,
                 type : 'GET',
                 success : (destination, status2) => {
-
+                    $('.bs-canvas-close, .bs-canvas-overlay').click();
                     var orgine = L.marker([ origine[0].Latitude, origine[0].Longitude]).addTo(layerGroup1);
                     var detination = L.marker([ destination[0].Latitude, destination[0].Longitude]).addTo(layerGroup2);
+                    var moy_lat = (origine[0].Latitude + destination[0].Latitude)/2
+                    var moy_lon = (origine[0].Longitude + destination[0].Longitude)/2
+                    macarte.setView([moy_lat, moy_lon], 6);
+                    // alert(destination[0].Latitude)
                 },
                 error : (resultat, status, erreur) => {
                     // Mettre une div d'erreur visible

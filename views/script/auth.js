@@ -44,6 +44,7 @@ function register () {
                 data :data_to_send,
                 success :  function (response, status) {
                     console.log(status)
+                    
                 },
                 error : function (resultat, status, erreur) {
                     // Mettre une div d'erreur visible

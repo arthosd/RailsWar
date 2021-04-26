@@ -5,11 +5,12 @@
 
 			<div class="container">
 				<div class="container" id="history">
-					<div class="row centered">
+					<div class="row centered" style="width:100 vw; height: 100vh;">
 						<div
 							class="col-xs-12 col-sm-10 col-md-10 col-lg-8 col-xl-8 offset-sm-1 offset-md-1 offset-lg-2 offset-xl-2">
 							
-							<% for (var data in historiques) {%>
+							<% if (historiques.length > 0) {
+							for (var data in historiques) {%>
 								<div class="shadow p-3 mb-5 bg-white">
 									<div class="card-block" onclick="item_selected(origine, destination, prix1, prix2)">
 										<div class="row">
@@ -40,6 +41,19 @@
 											<div class="col-xs-6 col-sm-6 col-md-6">
 												<div class="form-group">
 													tarif 2 :  <%= historiques[data].prix2%> $
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							<%}}else{%>
+								<div class="shadow p-3 mb-5 bg-white" style="margin-top: 20%;">
+								
+									<div class="card-block">
+										<div class="centered row">
+											<div class="col-xs-8 col-sm-8 col-md-8">
+												<div class="form-group" style="text-align: left;">
+													Il n'y a pas d'historique !
 												</div>
 											</div>
 										</div>

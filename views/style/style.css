@@ -17,6 +17,20 @@
   border-radius: 25px;
 }
 
+.bouton-aligne_1{
+	display:inline-block;
+	width:45%;
+	margin:10px 2.5% 10px 52.5%;
+	text-align:center;
+}
+
+.bouton-aligne_2{
+	display:inline-block;
+	width:45%;
+	margin:10px 52.5% 10px 2.5%;
+	text-align:center;
+}
+
 .shadow {
   border-radius: 25px;
 }
@@ -60,11 +74,6 @@ html, body {
 
 .content {
   flex: 1 0 auto;
-}
-
-.footer {
-  flex-shrink: 0;
-  margin-top: 255px;
 }
 
 .page-holder {

@@ -7,16 +7,17 @@
         <!-- Pushable content along with off-canvas opener. -->
         <div class="bs-offset-main bs-canvas-anim bg-light" style="color: #8f1338;">
             <button class="btn btn-info" type="button" data-toggle="canvas" data-target="#bs-canvas-left"
-                aria-expanded="false" aria-controls="bs-canvas-left"style="background-color: #8f1338;">&#9776;</button>
+                aria-expanded="false" aria-controls="bs-canvas-left" style="background-color: #8f1338;">&#9776;</button>
             Display search tab
         </div>
 
         <!-- Off-canvas sidebar markup, left -->
-        <div id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed h-100" style="background-color: #8f1338;">
+        <div id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed h-100"
+            style="background-color: #8f1338;">
             <header class="bs-canvas-header p-3 bg-light">
                 <h4 class="d-inline-block mb-0" style="color: #8f1338;">Search tab</h4>
                 <button type="button" class="bs-canvas-close close" aria-label="Close"><span aria-hidden="true"
-                    style="color: #8f1338;" >&times;</span></button>
+                        style="color: #8f1338;">&times;</span></button>
             </header>
             <div class="bs-canvas-content px-3 py-5">
                 <form role="form">
@@ -33,21 +34,23 @@
                     <!-- </div> -->
                 </form>
                 <div>
-                    <hr style="height:1px;border:none;color:#333;background-color:#333;"/>
+                    <hr style="height:1px;border:none;color:#333;background-color:#333;" />
                 </div>
 
                 <!-- For loop a mettre la  -->
                 <% for (var data in records) {%>
 
                     <script>
+                        // console.log()
                         var origine = '<%= records[data].fields.origine %>'
                         var destination = '<%= records[data].fields.destination %>'
                         var prix1 = '<%= records[data].fields.plein_tarif_1ere %>'
                         var prix2 = '<%= records[data].fields.plein_tarif_2nde%> '
+                        // var record = '<%= records %>'
                     </script>
 
                     <div class="shadow p-3 mb-5 bg-white">
-                        <div class="card-block" onclick="item_selected(origine, destination, prix1, prix2)">
+                        <div class="card-block" id="<%= data %>" onclick="item_selected(origine, destination, prix1, prix2, this.id)">
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
@@ -63,7 +66,7 @@
                             <div class="row">
                                 <div class="col-xs-8 col-sm-8 col-md-8">
                                     <div class="form-group">
-                                        Date : 01/04/2021
+                                        Date : 01-04-2021
                                     </div>
                                 </div>
                             </div>
@@ -75,13 +78,13 @@
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        tarif 2 :  <%= records[data].fields.plein_tarif_2nde%> $
+                                        tarif 2 : <%= records[data].fields.plein_tarif_2nde%> $
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <%}%>
+                    <%}%>
 
             </div>
         </div>
