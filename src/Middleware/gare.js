@@ -90,8 +90,8 @@ export function handle_search(req, res) {
 
     // on récupre les passage en parametre
 
-    const depart = req.query.lieu_depart;
-    const arrive = req.query.lieu_arrivee.length ==0 ? undefined : req.query.lieu_arrivee;
+    const depart = req.query.lieu_depart.toUpperCase();
+    const arrive = req.query.lieu_arrivee.length ==0 ? undefined : req.query.lieu_arrivee.toUpperCase();
 
     // On récupère les prix
     get_price(
