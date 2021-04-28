@@ -4,43 +4,26 @@ University of Paris project that can connect to French rail transport's API to r
 
 ## Getting Started
 
-First you'll need to install version 10.2 (or higher) of [Node.js](https://nodejs.org/en/) . If you're on Linux / Mac os, you can install it using your Package Manager. Make sure you have NPM up and running on your machine. When Node and Npm are installed, clone this repository by typing the following command :
+To run the project make sure you have Node.js version 14.0 or higher and MongoDB up and running on your machine.
+
+### Librairies
+
+This project uses multiple node librairies. Before running the project you'll need to run the following command to install them all.
 
 ```bash
-git clone git@github.com:arthosd/RailsWar.git
+npm install --save 
 ```
 
-### Installing dependencies
+### Run the project
 
-Go to the project's root and run the following command to install node modules.
+To run the project simply run the following command :
 
 ```bash
-  npm install --save
+npm start
 ```
 
-If node and npm was installed properly no errors should occur.
-
-### Running the project
-
-In the root project run the following command :
+If this command doesn't work please run the following one :
 
 ```bash
- npm run start
+npm run start
 ```
-
-Nodemon should launch automatically. You can now type http://localhost:8080/ in your web browser url bar. If "J'aime les pattes au pesto" appears on your screen, you're good to go.
-
-## Dependencies Used
-
-- [Express.js](https://expressjs.com/fr/)
-- [Nodemon](https://www.npmjs.com/package/nodemon)
-
-## API Used
-
-- [Navitia](http://doc.navitia.io/#overview)
-
-## Ressources
-
-- Node and express [tutorial](https://grafikart.fr/tutoriels/http-795)
-- Node [documentation](https://nodejs.org/docs/latest-v10.x/api/)
-- Express [documentation](https://expressjs.com/fr/4x/api.html)
