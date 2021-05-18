@@ -6,18 +6,19 @@ export function add_historique_middleware(req, res) {
     // On vérifie pour voir si l'utilisatteur est connecté
     const email = req.session.email;
 
+    const index = req.body.id;              // On récupère l'id
+    const obj = req.session.records[index];        // On a la réponse
+
+    const data_to_save = {
+        origine: obj.fields.origine,
+        destination: obj.fields.destination,
+        prix1: obj.fields.plein_tarif_1ere,
+        prix2: obj.fields.plein_tarif_2nde,
+        email: email
+    }
+
     if (email) { // S'il est connecté
 
-        const index = req.body.id;              // On récupère l'id
-        const obj = req.session.records[index];        // On a la réponse
-
-        const data_to_save = {
-            origine : obj.fields.origine,
-            destination : obj.fields.destination,
-            prix1 : obj.fields.plein_tarif_1ere,
-            prix2 : obj.fields.plein_tarif_2nde,
-            email : email
-        }
 
         const db = new Database("railswars");
         db.connect();
@@ -30,13 +31,27 @@ export function add_historique_middleware(req, res) {
                 if (err) { res.send(500) }
                 else {
                     console.log(item);
-                    res.send("OK");
+                    res.send(item);
                 }
             }
         );
 
     } else {
-        res.send("Not connected")
+        const db = new Database("railswars");
+        db.connect();
+
+        db.add_historique(
+            'nomail',
+            data_to_save,
+            (err, item) => {
+
+                if (err) { res.send(500) }
+                else {
+                    console.log(item);
+                    res.send(item);
+                }
+            }
+        );
     }
 }
 
@@ -50,26 +65,26 @@ export function get_historique_middleware(req, res) {
         db.connect();
 
         db.get_historique(
-            email, 
+            email,
             (err, item) => {
-    
-                if(err) {
+
+                if (err) {
                     res.send(500);
                 } else {
 
                     res.locals.title = "History";
                     res.locals.historiques = item;
-                
+
                     res.render('Templates/history');
                 }
             });
-    }else{
+    } else {
 
         res.redirect('/history'); // on redirige
     }
 }
 
-export function delete_historique_middleware (req, res) {
+export function delete_historique_middleware(req, res) {
 
     const db = new Database("railswars");
     db.connect();
@@ -84,7 +99,7 @@ export function delete_historique_middleware (req, res) {
                 res.send(data);
             }
         );
-    }else {
+    } else {
         res.send("Not Connected")
     }
 }

@@ -30,7 +30,7 @@ function logout () {
 
 function send() {
 
-    const password_to_send = $('#password').val();
+    const password_to_send = $('#new_password').val();
 
     $.ajax({
         url :'/profil/account',
@@ -48,7 +48,7 @@ function send() {
 
 function modify() {
 
-    $('#password').removeAttr('disabled'); // On retire le disabled
+    $('#new_password').removeAttr('disabled'); // On retire le disabled
     $('#password_button').attr("value","send");   // On change le nom  du bouton
 
     $("#password_button").attr("onclick","send()");// La nouvelle fonction

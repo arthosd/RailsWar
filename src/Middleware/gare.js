@@ -1,6 +1,6 @@
 import { get_price } from './../Api/api.js';            // API file
 import Database from './../Database/Database.js';       // Database 
-import {data} from './../Database/data.js';
+import { data } from './../Database/data.js';
 
 /**
  * Renvoies les prix à en fonction de la destination
@@ -8,31 +8,31 @@ import {data} from './../Database/data.js';
  * @param { Request } req 
  * @param { Resoslved } res 
  */
-export function prices (req, res) {
+export function prices(req, res) {
 
-    const origin = req.params.from;
-    const destination = req.params.to;                  // Peut être undefined
+	const origin = req.params.from;
+	const destination = req.params.to;                  // Peut être undefined
 
-    get_price((response) => {                           // Success callback
-        
-        console.log(response.data.records)
-        var data_to_send = [];
+	get_price((response) => {                           // Success callback
 
-        response.data.records.forEach(element => {
-            console.log("-----------------------------------");
-            console.log(element);
-            data_to_send.push(element.fields);
-        });
+		console.log(response.data.records)
+		var data_to_send = [];
 
-        res.send(data_to_send); 
-    },
-    (err) => {                                          // Rejection callback
-        console.log(err);
-        res.sendStatus(500);                            // Code d'erreur interne
-    },
-    origin,
-    destination
-    );
+		response.data.records.forEach(element => {
+			console.log("-----------------------------------");
+			console.log(element);
+			data_to_send.push(element.fields);
+		});
+
+		res.send(data_to_send);
+	},
+		(err) => {                                          // Rejection callback
+			console.log(err);
+			res.sendStatus(500);                            // Code d'erreur interne
+		},
+		origin,
+		destination
+	);
 }
 
 /**
@@ -41,24 +41,24 @@ export function prices (req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-export function get_all_gare (req, res) {
+export function get_all_gare(req, res) {
 
-    const db = new Database("railswars");                   // On se connexte à la bdd
+	const db = new Database("railswars");                   // On se connexte à la bdd
 
-    db.connect();
+	db.connect();
 
-    db.get_all_gare(
-        (err, data) => {
-            if (err) {
-                res.sendStatus(500);
-            } else {
-                res.json(data)
-            }
-        },
-        () => {
+	db.get_all_gare(
+		(err, data) => {
+			if (err) {
+				res.sendStatus(500);
+			} else {
+				res.json(data)
+			}
+		},
+		() => {
 
-        }
-    )
+		}
+	)
 }
 
 /**
@@ -67,58 +67,92 @@ export function get_all_gare (req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-export function get_gare (req, res) {
-    
-    const db = new Database("railswars");                   // On se connexte à la bdd
+export function get_gare(req, res) {
 
-    db.connect();
+	const db = new Database("railswars");                   // On se connexte à la bdd
 
-    db.get_gare_data(
-        (err, data) => {
-            if (err) {
-                res.sendStatus(500);                // Code d'erreur serveur
-            } else {
-                res.json(data);                     // On envoie toutes les gares
-            }
-        },
-        req.params.q
-    )
+	db.connect();
+
+	db.get_gare_data(
+		(err, data) => {
+			if (err) {
+				res.sendStatus(500);                // Code d'erreur serveur
+			} else {
+				res.json(data);                     // On envoie toutes les gares
+			}
+		},
+		req.params.q
+	)
+}
+
+/**
+ * Renvoie une gare si elle est dans la Base de données
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ */
+export function get_destination(req, res) {
+	const index = req.body.id;              // On récupère l'id
+	const obj = req.session.records[index];        // On a la réponse
+
+	const data_to_send = {
+		origine: obj.fields.origine,
+		destination: obj.fields.destination
+	};
+
+	(data) => {
+		res.send(data_to_send);
+	}
+	// const db = new Database("railswars");                   // On se connexte à la bdd
+
+	// db.connect();
+
+	// db.get_destination_data(
+	// 	(err, data) => {
+	// 		if (err) {
+	// 			res.sendStatus(500);                // Code d'erreur serveur
+	// 		} else {
+	// 			res.json(data);                     // On envoie toutes les gares
+	// 		}
+	// 	},
+	// 	req.params.id
+	// )
 }
 
 export function handle_search(req, res) {
 
 
-    // on récupre les passage en parametre
+	// on récupre les passage en parametre
 
-    const depart = req.query.lieu_depart.toUpperCase();
-    const arrive = req.query.lieu_arrivee.length ==0 ? undefined : req.query.lieu_arrivee.toUpperCase();
+	const depart = req.query.lieu_depart.toUpperCase();
+	const arrive = req.query.lieu_arrivee.length == 0 ? undefined : req.query.lieu_arrivee.toUpperCase();
 
-    // On récupère les prix
-    get_price(
-        (data) => {
+	// On récupère les prix
+	get_price(
+		(data) => {
 
-            res.locals.title = "Search";
-            res.locals.records = data.data.records
+			res.locals.title = "Search";
+			res.locals.records = data.data.records
 
-            req.session.records = data.data.records;
+			req.session.records = data.data.records;
 
-            res.render('Templates/search');
-        },
-        (err) => {
+			res.render('Templates/search');
+		},
+		(err) => {
 
-        },
-        depart,
-        arrive
-    )
+		},
+		depart,
+		arrive
+	)
 }
 
-export function add_all_gare (req, res) {
+export function add_all_gare(req, res) {
 
-    const db = new Database("railswars");
+	const db = new Database("railswars");
 
-    db.connect();
+	db.connect();
 
-    db.add_gare(data);
+	db.add_gare(data);
 
-    res.send("200");
+	res.send("200");
 }
